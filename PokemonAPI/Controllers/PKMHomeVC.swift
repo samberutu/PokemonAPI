@@ -19,5 +19,8 @@ final class PKMHomeVC: UIViewController {
         title = "Pokemon"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-
+    
+    func addNewView() {
+        
+    }
 }
