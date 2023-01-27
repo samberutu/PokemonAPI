@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		EA2B876B298421FD00606B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876A298421FD00606B83 /* AppDelegate.swift */; };
 		EA2B876D298421FD00606B83 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876C298421FD00606B83 /* SceneDelegate.swift */; };
-		EA2B876F298421FD00606B83 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876E298421FD00606B83 /* ViewController.swift */; };
-		EA2B8772298421FD00606B83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2B8770298421FD00606B83 /* Main.storyboard */; };
+		EA2B876F298421FD00606B83 /* PKMHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876E298421FD00606B83 /* PKMHomeVC.swift */; };
 		EA2B8774298421FE00606B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2B8773298421FE00606B83 /* Assets.xcassets */; };
 		EA2B8777298421FE00606B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2B8775298421FE00606B83 /* LaunchScreen.storyboard */; };
+		EA2B87802984292800606B83 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EA2B877F2984292800606B83 /* Alamofire */; };
+		EA2B87832984295400606B83 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EA2B87822984295400606B83 /* SDWebImage */; };
+		EA2B87862984297400606B83 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = EA2B87852984297400606B83 /* SkeletonView */; };
+		EA2B878E29842B5D00606B83 /* PKMDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B878D29842B5D00606B83 /* PKMDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EA2B8767298421FD00606B83 /* PokemonAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2B876A298421FD00606B83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA2B876C298421FD00606B83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EA2B876E298421FD00606B83 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EA2B8771298421FD00606B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA2B876E298421FD00606B83 /* PKMHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMHomeVC.swift; sourceTree = "<group>"; };
 		EA2B8773298421FE00606B83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA2B8776298421FE00606B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA2B8778298421FE00606B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA2B878D29842B5D00606B83 /* PKMDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMDetailVC.swift; sourceTree = "<group>"; };
+		EA2B8790298431AD00606B83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2B87832984295400606B83 /* SDWebImage in Frameworks */,
+				EA2B87862984297400606B83 /* SkeletonView in Frameworks */,
+				EA2B87802984292800606B83 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,7 @@
 		EA2B875E298421FD00606B83 = {
 			isa = PBXGroup;
 			children = (
+				EA2B8790298431AD00606B83 /* .swiftlint.yml */,
 				EA2B8769298421FD00606B83 /* PokemonAPI */,
 				EA2B8768298421FD00606B83 /* Products */,
 			);
@@ -56,15 +64,63 @@
 		EA2B8769298421FD00606B83 /* PokemonAPI */ = {
 			isa = PBXGroup;
 			children = (
-				EA2B876A298421FD00606B83 /* AppDelegate.swift */,
-				EA2B876C298421FD00606B83 /* SceneDelegate.swift */,
-				EA2B876E298421FD00606B83 /* ViewController.swift */,
-				EA2B8770298421FD00606B83 /* Main.storyboard */,
-				EA2B8773298421FE00606B83 /* Assets.xcassets */,
-				EA2B8775298421FE00606B83 /* LaunchScreen.storyboard */,
+				EA2B878C29842ADF00606B83 /* Resources */,
+				EA2B878B29842ACE00606B83 /* APIClient */,
+				EA2B878A29842ABB00606B83 /* ViewModels */,
+				EA2B878929842AAB00606B83 /* Views */,
+				EA2B878829842AA000606B83 /* Models */,
+				EA2B878729842A8D00606B83 /* Controllers */,
 				EA2B8778298421FE00606B83 /* Info.plist */,
 			);
 			path = PokemonAPI;
+			sourceTree = "<group>";
+		};
+		EA2B878729842A8D00606B83 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B876E298421FD00606B83 /* PKMHomeVC.swift */,
+				EA2B878D29842B5D00606B83 /* PKMDetailVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EA2B878829842AA000606B83 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EA2B878929842AAB00606B83 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EA2B878A29842ABB00606B83 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EA2B878B29842ACE00606B83 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		EA2B878C29842ADF00606B83 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B876A298421FD00606B83 /* AppDelegate.swift */,
+				EA2B876C298421FD00606B83 /* SceneDelegate.swift */,
+				EA2B8773298421FE00606B83 /* Assets.xcassets */,
+				EA2B8775298421FE00606B83 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +130,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA2B877B298421FE00606B83 /* Build configuration list for PBXNativeTarget "PokemonAPI" */;
 			buildPhases = (
+				EA2B878F2984314C00606B83 /* ShellScript */,
 				EA2B8763298421FD00606B83 /* Sources */,
 				EA2B8764298421FD00606B83 /* Frameworks */,
 				EA2B8765298421FD00606B83 /* Resources */,
@@ -83,6 +140,11 @@
 			dependencies = (
 			);
 			name = PokemonAPI;
+			packageProductDependencies = (
+				EA2B877F2984292800606B83 /* Alamofire */,
+				EA2B87822984295400606B83 /* SDWebImage */,
+				EA2B87852984297400606B83 /* SkeletonView */,
+			);
 			productName = PokemonAPI;
 			productReference = EA2B8767298421FD00606B83 /* PokemonAPI.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +173,11 @@
 				Base,
 			);
 			mainGroup = EA2B875E298421FD00606B83;
+			packageReferences = (
+				EA2B877E2984292800606B83 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				EA2B87812984295400606B83 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				EA2B87842984297400606B83 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+			);
 			productRefGroup = EA2B8768298421FD00606B83 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,18 +194,38 @@
 			files = (
 				EA2B8777298421FE00606B83 /* LaunchScreen.storyboard in Resources */,
 				EA2B8774298421FE00606B83 /* Assets.xcassets in Resources */,
-				EA2B8772298421FD00606B83 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EA2B878F2984314C00606B83 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EA2B8763298421FD00606B83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2B876F298421FD00606B83 /* ViewController.swift in Sources */,
+				EA2B878E29842B5D00606B83 /* PKMDetailVC.swift in Sources */,
+				EA2B876F298421FD00606B83 /* PKMHomeVC.swift in Sources */,
 				EA2B876B298421FD00606B83 /* AppDelegate.swift in Sources */,
 				EA2B876D298421FD00606B83 /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +234,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EA2B8770298421FD00606B83 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA2B8771298421FD00606B83 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EA2B8775298421FE00606B83 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +371,6 @@
 				INFOPLIST_FILE = PokemonAPI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +398,6 @@
 				INFOPLIST_FILE = PokemonAPI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -358,6 +435,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA2B877E2984292800606B83 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		EA2B87812984295400606B83 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		EA2B87842984297400606B83 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA2B877F2984292800606B83 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA2B877E2984292800606B83 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		EA2B87822984295400606B83 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA2B87812984295400606B83 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		EA2B87852984297400606B83 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA2B87842984297400606B83 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EA2B875F298421FD00606B83 /* Project object */;
 }
