@@ -16,6 +16,8 @@
 		EA2B87832984295400606B83 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EA2B87822984295400606B83 /* SDWebImage */; };
 		EA2B87862984297400606B83 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = EA2B87852984297400606B83 /* SkeletonView */; };
 		EA2B878E29842B5D00606B83 /* PKMDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B878D29842B5D00606B83 /* PKMDetailVC.swift */; };
+		EA2B87932984399100606B83 /* PokemonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B87922984399100606B83 /* PokemonsCell.swift */; };
+		EA2B87962984754900606B83 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B87952984754900606B83 /* UILabel+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		EA2B8778298421FE00606B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA2B878D29842B5D00606B83 /* PKMDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMDetailVC.swift; sourceTree = "<group>"; };
 		EA2B8790298431AD00606B83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		EA2B87922984399100606B83 /* PokemonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsCell.swift; sourceTree = "<group>"; };
+		EA2B87952984754900606B83 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 		EA2B8769298421FD00606B83 /* PokemonAPI */ = {
 			isa = PBXGroup;
 			children = (
+				EA2B87942984752D00606B83 /* Extension */,
 				EA2B878C29842ADF00606B83 /* Resources */,
 				EA2B878B29842ACE00606B83 /* APIClient */,
 				EA2B878A29842ABB00606B83 /* ViewModels */,
@@ -94,6 +99,7 @@
 		EA2B878929842AAB00606B83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA2B87912984394B00606B83 /* Home */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -121,6 +127,22 @@
 				EA2B8775298421FE00606B83 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EA2B87912984394B00606B83 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B87922984399100606B83 /* PokemonsCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EA2B87942984752D00606B83 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B87952984754900606B83 /* UILabel+Ext.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +249,8 @@
 				EA2B878E29842B5D00606B83 /* PKMDetailVC.swift in Sources */,
 				EA2B876F298421FD00606B83 /* PKMHomeVC.swift in Sources */,
 				EA2B876B298421FD00606B83 /* AppDelegate.swift in Sources */,
+				EA2B87932984399100606B83 /* PokemonsCell.swift in Sources */,
+				EA2B87962984754900606B83 /* UILabel+Ext.swift in Sources */,
 				EA2B876D298421FD00606B83 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
