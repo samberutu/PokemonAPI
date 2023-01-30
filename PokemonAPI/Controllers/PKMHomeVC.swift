@@ -7,6 +7,7 @@
 
 import UIKit
 import SkeletonView
+import SwiftUI
 
 final class PKMHomeVC: UIViewController {
     
@@ -26,7 +27,7 @@ final class PKMHomeVC: UIViewController {
         super.viewDidLoad()
         setupView()
         setupSkeletonView()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.setupData()
         }
     }
@@ -80,7 +81,7 @@ final class PKMHomeVC: UIViewController {
     }
 }
 
-extension PKMHomeVC: SkeletonCollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension PKMHomeVC: SkeletonCollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
         PokemonsCell.identifier
     }
@@ -108,6 +109,17 @@ extension PKMHomeVC: SkeletonCollectionViewDataSource, UICollectionViewDelegate,
 //        let totalSpacing: CGFloat = 2 * spacing + (itemInRow - 1) * spacing
 //    }
 
+}
+
+extension PKMHomeVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.openSwiftUIScreen(name: profiles[indexPath.row].name)
+    }
+    
+    @objc func openSwiftUIScreen(name: String) {
+        let swiftUIViewController = UIHostingController(rootView: PKMDetailView(name: name))
+        self.navigationController?.pushViewController(swiftUIViewController, animated: true)
+    }
 }
 
 // MARK: - for another variable
