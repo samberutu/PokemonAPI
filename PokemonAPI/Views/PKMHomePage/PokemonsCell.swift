@@ -7,15 +7,18 @@
 
 import UIKit
 import SkeletonView
+import SDWebImage
 
 protocol ReusableView: AnyObject {
     static var identifier: String { get }
 }
 
 class PokemonsCell: UICollectionViewCell, ReusableView {
+    var viewModel = PKMCellViewModel()
     static var identifier: String {
         return String(describing: self)
     }
+    
     private enum Constants {
         // MARK: contentView layout constants
         static let contentViewCornerRadius: CGFloat = 8.0
@@ -29,7 +32,7 @@ class PokemonsCell: UICollectionViewCell, ReusableView {
         static let profileDescriptionVerticalPadding: CGFloat = 8.0
     }
     
-    private let pokemonImg: UIImageView = {
+    let pokemonImg: UIImageView = {
         let img = UIImageView(frame: .zero)
         img.contentMode = .scaleAspectFit
         return img
@@ -98,12 +101,23 @@ class PokemonsCell: UICollectionViewCell, ReusableView {
         ])
     }
     
-    func setup(_ profile: Profile) {
-        pokemonImg.image = UIImage(named: "Example")
+    func setup(id: String, pkmName: String, imgURL: String, pkmType: String) {
+        pokemonImg.sd_setImage(with: URL(string: imgURL), placeholderImage: viewModel.addProgressImage())
+        contentView.layer.borderWidth = 1.5
+        contentView.layer.borderColor = viewModel.getTypeColor().cgColor
         pokemonImg.tintColor = .white
-        pokemonName.text = profile.name
-        pokemonName.backgroundColor = .blue
-        pokemonNumber.text = "999"
+        pokemonName.text = pkmName
+        pokemonName.backgroundColor = viewModel.getTypeColor()
+        pokemonNumber.text = "#\(id)"
+    }
+    
+    func fetchData(id: String, pkmName: String) {
+        viewModel.fetchPKMDetail(id: id) {
+            self.setup(id: id,
+                       pkmName: pkmName,
+                       imgURL: self.viewModel.pokemonDetail.sprites.other.officialArtwork.frontDefault,
+                       pkmType: "result.types.first")
+        }
     }
     
 }

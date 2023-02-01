@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AboutView: View {
+    let weight: Int
+    let height: Int
+    let moves: [String]
     let aboutTitle: [String] = ["Weight", "Height", "Moves"]
     let idx = 0
     var body: some View {
@@ -17,8 +20,8 @@ struct AboutView: View {
                     Image(systemName: "scalemass")
                         .resizable()
                         .frame(width: 16, height: 16)
-                        .padding(.trailing, 8)
-                    Text("39 kg")
+//                        .padding(.trailing, 8)
+                    Text("\(weight) kg")
                         .font(.custom(FontManager.Poppins.regule, size: 10))
                 }
                 .frame(height: 32)
@@ -34,8 +37,8 @@ struct AboutView: View {
                         .scaledToFit()
                         .rotationEffect(.degrees(-90))
                         .frame(width: 16, height: 16)
-                        .padding(.trailing, 8)
-                    Text("0,7 m")
+//                        .padding(.trailing, 8)
+                    Text("\(height) m")
                         .font(.custom(FontManager.Poppins.regule, size: 10))
                 }
                 .frame(height: 32)
@@ -46,12 +49,11 @@ struct AboutView: View {
             Divider()
             VStack {
                 VStack {
-                    Text("Chlorophyll")
-                        .font(.custom(FontManager.Poppins.regule, size: 10))
-                        .lineLimit(1)
-                    Text("Overgrow")
-                        .font(.custom(FontManager.Poppins.regule, size: 10))
-                        .lineLimit(1)
+                    ForEach(moves.indices, id: \.self) { idx in
+                        Text(moves[idx])
+                            .font(.custom(FontManager.Poppins.regule, size: 10))
+                            .lineLimit(1)
+                    }
                 }
                 .frame(height: 32)
                 Text("Moves")
@@ -67,7 +69,7 @@ struct AboutView: View {
 
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutView()
+        AboutView(weight: 30, height: 20, moves: ["lari", "terbang"])
     }
 }
 
