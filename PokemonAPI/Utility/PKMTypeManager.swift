@@ -11,25 +11,25 @@ protocol GetPKMColor {
     var typeColor: Color { get }
 }
 
-enum PKMType {
-    case rock
-    case ghost
-    case steel
-    case water
-    case grass
-    case psychic
-    case ice
-    case dark
-    case fairy
-    case normal
-    case fighting
-    case flying
-    case poison
-    case ground
-    case bug
-    case fire
-    case electric
-    case dragon
+enum PKMType: String, CaseIterable {
+    case rock = "rock"
+    case ghost = "ghost"
+    case steel = "steel"
+    case water = "water"
+    case grass = "grass"
+    case psychic = "psychic"
+    case ice = "ice"
+    case dark = "dark"
+    case fairy = "fairy"
+    case normal = "normal"
+    case fighting = "fighting"
+    case flying = "flying"
+    case poison = "poison"
+    case ground = "ground"
+    case bug = "bug"
+    case fire = "fire"
+    case electric = "electric"
+    case dragon = "dragon"
 }
 
 extension PKMType: GetPKMColor {

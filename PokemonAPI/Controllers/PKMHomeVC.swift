@@ -10,6 +10,7 @@ import SkeletonView
 import SwiftUI
 
 final class PKMHomeVC: UIViewController {
+    private var viewModel = PKMHomeViewModel()
     
     private var pokemonsCollectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -27,7 +28,7 @@ final class PKMHomeVC: UIViewController {
         super.viewDidLoad()
         setupView()
         setupSkeletonView()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        viewModel.fetchPKMList {
             self.setupData()
         }
     }
@@ -51,7 +52,6 @@ final class PKMHomeVC: UIViewController {
     }
     
     func setupData() {
-        populateProfiles()
         pokemonsCollectionView.reloadData()
         pokemonsCollectionView.stopSkeletonAnimation()
         view.hideSkeleton()
@@ -87,15 +87,14 @@ extension PKMHomeVC: SkeletonCollectionViewDataSource, UICollectionViewDelegateF
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return profiles.count
+        viewModel.result.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = pokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: PokemonsCell.identifier, for: indexPath) as! PokemonsCell
-        let pokemon = profiles[indexPath.row]
-        cell.contentView.layer.borderWidth = 1.5
-        cell.contentView.layer.borderColor = UIColor.white.cgColor
-        cell.setup(pokemon)
+        let pokemon = viewModel.result[indexPath.row]
+        let id = indexPath.row + 1
+        cell.fetchData(id: String(id), pkmName: pokemon.name)
         return cell
     }
     
@@ -103,21 +102,16 @@ extension PKMHomeVC: SkeletonCollectionViewDataSource, UICollectionViewDelegateF
         let width = LayoutConstant.width
         return CGSize(width: width, height: width + 8)
     }
-    
-//    func itemWidth(width: CGFloat, spacing: CGFloat) -> CGFloat {
-//        let itemInRow: CGFloat = 2
-//        let totalSpacing: CGFloat = 2 * spacing + (itemInRow - 1) * spacing
-//    }
 
 }
 
 extension PKMHomeVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.openSwiftUIScreen(name: profiles[indexPath.row].name)
+        self.openSwiftUIScreen(pkmId: String(indexPath.row + 1), pkmCount: viewModel.itemCount)
     }
     
-    @objc func openSwiftUIScreen(name: String) {
-        let swiftUIViewController = UIHostingController(rootView: PKMDetailView(name: name))
+    func openSwiftUIScreen(pkmId: String, pkmCount: Int) {
+        let swiftUIViewController = UIHostingController(rootView: PKMDetailView(pkmId: pkmId, pkmCount: pkmCount))
         self.navigationController?.pushViewController(swiftUIViewController, animated: true)
     }
 }

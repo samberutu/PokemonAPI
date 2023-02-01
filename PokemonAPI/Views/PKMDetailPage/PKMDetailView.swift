@@ -6,24 +6,18 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct PKMDetailView: View {
     @Environment(\.presentationMode) var presentation
-    let name: String
+    let pkmId: String
+    let pkmCount: Int
+    @StateObject var viewModel = PKMDetailViewModel()
     let devicewidth = UIScreen.main.bounds.size.width
     let deviceHeight = UIScreen.main.bounds.size.height
-    let statsTitle = ["HP", "ATK", "DEF", "SATK", "SDEF", "SPD"]
-    let stats: [StatModel] = [
-        StatModel(title: "HP", value: 109),
-        StatModel(title: "ATK", value: 179),
-        StatModel(title: "DEF", value: 35),
-        StatModel(title: "SATK", value: 105),
-        StatModel(title: "SDEF", value: 45),
-        StatModel(title: "SPD", value: 120)
-    ]
     var body: some View {
         ZStack {
-            Color(uiColor: .systemGreen)
+            Color(viewModel.getTypeColor())
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 HStack {
@@ -47,15 +41,15 @@ struct PKMDetailView: View {
                             .scaledToFit()
                             .frame(width: 24)
                     }
-
-                    Text("Bulbasaur")
+                    
+                    Text(viewModel.pokemonDetail.name)
                         .font(.custom(FontManager.Poppins.bold, size: 24))
                         .bold()
                         .lineLimit(1)
                         .foregroundColor(.white)
                         .padding(.horizontal, 16)
                     Spacer()
-                    Text("#001")
+                    Text("#\(viewModel.pokemonDetail.id)")
                         .font(.custom(FontManager.Poppins.bold, size: 12))
                         .bold()
                         .foregroundColor(.white)
@@ -66,54 +60,74 @@ struct PKMDetailView: View {
                 ZStack {
                     VStack {
                         HStack {
-                            Button {
-                                print("")
-                            } label: {
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(ColorManager.PKMWhite)
+                            if viewModel.pokemonDetail.id <= 1 {
+                                Spacer()
+                            } else {
+                                Button {
+                                    viewModel.fetchPKMDetail(pkmId: String(viewModel.pokemonDetail.id - 1))
+                                } label: {
+                                    Image(systemName: "chevron.left")
+                                        .foregroundColor(ColorManager.PKMWhite)
+                                }
                             }
                             Spacer()
-                            Button {
-                                print("")
-                            } label: {
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(ColorManager.PKMWhite)
+                            if viewModel.pokemonDetail.id >= pkmCount {
+                                Spacer()
+                            } else {
+                                Button {
+                                    viewModel.fetchPKMDetail(pkmId: String(viewModel.pokemonDetail.id + 1))
+                                } label: {
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(ColorManager.PKMWhite)
+                                }
                             }
                         }
                         .frame(height: 16)
                         .padding(.vertical, 16)
                         .padding(.horizontal, 24)
                         ZStack {
-                            Color.white
+                            ColorManager.PKMBackground
                                 .ignoresSafeArea(.keyboard)
                                 .cornerRadius(8.0)
                         }
                     }
                     .padding(.top, deviceHeight/8)
                     VStack {
-                        Image(uiImage: UIImage(named: "Example") ?? UIImage())
+                        WebImage(url: URL(string: viewModel.pokemonDetail.sprites.other.officialArtwork.frontDefault))
                             .resizable()
+                            .indicator(.activity)
                             .scaledToFit()
                             .frame(width: devicewidth/2, height: devicewidth/2)
-                        PokemonTypeView(title: "Grass", bgColor: ColorManager.PKMGrass)
+                        HStack {
+                            ForEach(viewModel.pokemonDetail.types.indices, id: \.self) { idx in
+                                let species = viewModel.pokemonDetail.types[idx].type
+                                let bgColor = viewModel.getTypesColor()[idx]
+                                PokemonTypeView(title: species.name, bgColor: bgColor)
+                            }
+                            .scrollDisabled(true)
+                        }
                         Text("About")
-                            .foregroundColor(.green)
+                            .foregroundColor(Color(viewModel.getTypeColor()))
                             .font(.custom(FontManager.Poppins.bold, size: 14))
                             .padding(.top, 16)
-                        AboutView()
+                        AboutView(weight: viewModel.pokemonDetail.weight,
+                                  height: viewModel.pokemonDetail.height,
+                                  moves: viewModel.getMoves())
                         .padding(.top)
-                        Text("Pokémon (an abbreviation for Pocket Monsters[b] in Japan) is a Japanese media franchise managed by The Pokémon Company, founded by Nintendo, Game Freak, and Creatures.")
+                        Text(viewModel.pkmDescription)
                             .font(.custom(FontManager.Poppins.regule, size: 10))
                             .foregroundColor(.black)
                             .lineLimit(3)
                             .padding(.top, 16)
                         Text("Base Stats")
-                            .foregroundColor(.green)
+                            .foregroundColor(Color(viewModel.getTypeColor()))
                             .font(.custom(FontManager.Poppins.bold, size: 14))
                             .padding(.top, 16)
                         VStack {
-                            ForEach(stats, id: \.id) { stat in
-                                StatView(stat: stat, color: .green)
+                            ForEach(viewModel.pokemonDetail.stats.indices, id: \.self) { idx in
+                                StatView(title: viewModel.getStatTitle()[idx],
+                                         value: String(viewModel.pokemonDetail.stats[idx].baseStat),
+                                         color: Color(viewModel.getTypeColor()))
                             }
                         }
                         .padding(.top, 16)
@@ -122,17 +136,33 @@ struct PKMDetailView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 48)
                 }
-//                .padding(.top, 32)
+                //                .padding(.top, 32)
                 .padding(.horizontal, 8)
+            }
+            if viewModel.isLoadData {
+                Color.black
+                    .opacity(0.7)
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    ProgressView()
+                        .scaleEffect(2)
+                    Text(viewModel.errorMessage)
+                        .font(.custom(FontManager.Poppins.bold, size: 14))
+                        .padding()
+                }
+                
             }
         }
         .navigationBarHidden(true)
+        .onAppear {
+            viewModel.fetchPKMDetail(pkmId: pkmId)
+        }
     }
     
 }
 
 struct PKMDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PKMDetailView(name: "Samlo")
+        PKMDetailView(pkmId: "1", pkmCount: 1)
     }
 }

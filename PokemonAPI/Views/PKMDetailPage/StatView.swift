@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct StatView: View {
-    let stat: StatModel
+    let title: String
+    let value: String
     let color: Color
     var body: some View {
         HStack(spacing: 8) {
-            Text(stat.title)
+            Text(title)
                 .multilineTextAlignment(.leading)
                 .font(.custom(FontManager.Poppins.bold, size: 10))
                 .frame(width: 28.0)
             Divider()
-            Text("\(stat.value)")
+            Text(value)
                 .multilineTextAlignment(.leading)
                 .font(.custom(FontManager.Poppins.regule, size: 10))
                 .frame(width: 20.0)
-            ProgressView(value: Float32(stat.value), total: 200)
+            ProgressView(value: Float32(value), total: 200)
                 .tint(color)
                 .background(color.opacity(0.1))
         }
@@ -32,6 +33,6 @@ struct StatView: View {
 
 struct StatView_Previews: PreviewProvider {
     static var previews: some View {
-        StatView(stat: StatModel(title: "HP", value: 102), color: Color.green)
+        StatView(title: "", value: "", color: .green)
     }
 }
