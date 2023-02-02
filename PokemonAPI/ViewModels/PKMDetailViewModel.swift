@@ -66,7 +66,6 @@ class PKMDetailViewModel: ObservableObject {
         pkmDescription = englishDesc[Int.random(in: 0..<englishDesc.count)].flavorText
             .replacingOccurrences(of: "\n", with: " ")
             .replacingOccurrences(of: "\\", with: " ")
-            .replacingOccurrences(of: "\\f", with: " ")
     }
     
     func getTypeColor() -> UIColor {

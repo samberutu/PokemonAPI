@@ -17,7 +17,7 @@ final class PKMHomeVC: UIViewController {
         viewLayout.scrollDirection = .vertical
         viewLayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = UIColor(ColorManager.PKMBackground)
         collectionView.register(PokemonsCell.self, forCellWithReuseIdentifier: PokemonsCell.identifier)
         return collectionView
     }()
@@ -34,9 +34,9 @@ final class PKMHomeVC: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .systemBackground
         title = "Pokemon"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor(ColorManager.PKMDarkGray)]
         pokemonsCollectionView.dataSource = self
         pokemonsCollectionView.delegate = self
         view.addSubview(pokemonsCollectionView)

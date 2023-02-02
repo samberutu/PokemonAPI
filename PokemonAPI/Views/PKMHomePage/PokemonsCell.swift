@@ -19,19 +19,6 @@ class PokemonsCell: UICollectionViewCell, ReusableView {
         return String(describing: self)
     }
     
-    private enum Constants {
-        // MARK: contentView layout constants
-        static let contentViewCornerRadius: CGFloat = 8.0
-        
-        // MARK: profileImageView layout constants
-        static let imageWidth: CGFloat = LayoutConstant.width/2
-        
-        // MARK: Generic layout constants
-        static let verticalSpacing: CGFloat = 4.0
-        static let horizontalPadding: CGFloat = LayoutConstant.spacing
-        static let profileDescriptionVerticalPadding: CGFloat = 8.0
-    }
-    
     let pokemonImg: UIImageView = {
         let img = UIImageView(frame: .zero)
         img.contentMode = .scaleAspectFit
@@ -67,11 +54,12 @@ class PokemonsCell: UICollectionViewCell, ReusableView {
     
     func setupViews() {
         contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = Constants.contentViewCornerRadius
-        contentView.backgroundColor = .systemBackground
+        contentView.layer.cornerRadius = 8.0
+        contentView.backgroundColor = UIColor(ColorManager.PKMBackground)
         contentView.addSubview(pokemonImg)
         contentView.addSubview(pokemonName)
         contentView.addSubview(pokemonNumber)
+        setupViewBeforeFetchData()
     }
     
     func setupLayout() {
@@ -101,22 +89,31 @@ class PokemonsCell: UICollectionViewCell, ReusableView {
         ])
     }
     
-    func setup(id: String, pkmName: String, imgURL: String, pkmType: String) {
-        pokemonImg.sd_setImage(with: URL(string: imgURL), placeholderImage: viewModel.addProgressImage())
-        contentView.layer.borderWidth = 1.5
+    func setupViewAfterGetData() {
+        pokemonImg.sd_setImage(with: URL(string: viewModel.pokemonDetail.sprites.other.officialArtwork.frontDefault),
+                               placeholderImage: viewModel.addProgressImage())
         contentView.layer.borderColor = viewModel.getTypeColor().cgColor
         pokemonImg.tintColor = .white
-        pokemonName.text = pkmName
+        pokemonName.text = viewModel.pokemonDetail.name
         pokemonName.backgroundColor = viewModel.getTypeColor()
-        pokemonNumber.text = "#\(id)"
+        pokemonNumber.text = "#\(String(format: "%04d", viewModel.pokemonDetail.id))"
+        pokemonNumber.textColor = UIColor(cgColor: viewModel.getTypeColor().cgColor)
+    }
+    
+    func setupViewBeforeFetchData() {
+        pokemonImg.image = UIImage(named: "Example")
+        contentView.layer.borderWidth = 1.5
+        contentView.layer.borderColor = ColorManager.PKMNormal.cgColor
+        pokemonImg.tintColor = UIColor(ColorManager.PKMWhite)
+        pokemonName.text = "NN"
+        pokemonName.backgroundColor = UIColor(ColorManager.PKMNormal)
+        pokemonNumber.text = "#0000"
+        pokemonNumber.textColor = UIColor(cgColor: viewModel.getTypeColor().cgColor)
     }
     
     func fetchData(id: String, pkmName: String) {
         viewModel.fetchPKMDetail(id: id) {
-            self.setup(id: id,
-                       pkmName: pkmName,
-                       imgURL: self.viewModel.pokemonDetail.sprites.other.officialArtwork.frontDefault,
-                       pkmType: "result.types.first")
+            self.setupViewAfterGetData()
         }
     }
     
