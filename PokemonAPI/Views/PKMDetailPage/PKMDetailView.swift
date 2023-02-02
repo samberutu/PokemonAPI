@@ -30,114 +30,118 @@ struct PKMDetailView: View {
                 .padding(.trailing, 8)
                 Spacer()
             }
-            VStack {
-                HStack {
-                    Button {
-                        presentation.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "arrow.left")
-                            .resizable()
+            ScrollView {
+                VStack {
+                    HStack {
+                        Button {
+                            presentation.wrappedValue.dismiss()
+                        } label: {
+                            Image(systemName: "arrow.left")
+                                .resizable()
+                                .foregroundColor(.white)
+                                .scaledToFit()
+                                .frame(width: 24)
+                        }
+                        
+                        Text(viewModel.pokemonDetail.name)
+                            .font(.custom(FontManager.Poppins.bold, size: 24))
+                            .bold()
+                            .lineLimit(1)
                             .foregroundColor(.white)
-                            .scaledToFit()
-                            .frame(width: 24)
-                    }
-                    
-                    Text(viewModel.pokemonDetail.name)
-                        .font(.custom(FontManager.Poppins.bold, size: 24))
-                        .bold()
-                        .lineLimit(1)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 16)
-                    Spacer()
-                    Text("#\(viewModel.pokemonDetail.id)")
-                        .font(.custom(FontManager.Poppins.bold, size: 12))
-                        .bold()
-                        .foregroundColor(.white)
-                        .padding(.leading, 16)
-                }
-                .frame(height: 32)
-                .padding(.horizontal, 24)
-                ZStack {
-                    VStack {
-                        HStack {
-                            if viewModel.pokemonDetail.id <= 1 {
-                                Spacer()
-                            } else {
-                                Button {
-                                    viewModel.fetchPKMDetail(pkmId: String(viewModel.pokemonDetail.id - 1))
-                                } label: {
-                                    Image(systemName: "chevron.left")
-                                        .foregroundColor(ColorManager.PKMWhite)
-                                }
-                            }
-                            Spacer()
-                            if viewModel.pokemonDetail.id >= pkmCount {
-                                Spacer()
-                            } else {
-                                Button {
-                                    viewModel.fetchPKMDetail(pkmId: String(viewModel.pokemonDetail.id + 1))
-                                } label: {
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(ColorManager.PKMWhite)
-                                }
-                            }
-                        }
-                        .frame(height: 16)
-                        .padding(.vertical, 16)
-                        .padding(.horizontal, 24)
-                        ZStack {
-                            ColorManager.PKMBackground
-                                .ignoresSafeArea(.keyboard)
-                                .cornerRadius(8.0)
-                        }
-                    }
-                    .padding(.top, deviceHeight/8)
-                    VStack {
-                        WebImage(url: URL(string: viewModel.pokemonDetail.sprites.other.officialArtwork.frontDefault))
-                            .resizable()
-                            .indicator(.activity)
-                            .scaledToFit()
-                            .frame(width: devicewidth/2, height: devicewidth/2)
-                        HStack {
-                            ForEach(viewModel.pokemonDetail.types.indices, id: \.self) { idx in
-                                let species = viewModel.pokemonDetail.types[idx].type
-                                let bgColor = viewModel.getTypesColor()[idx]
-                                PokemonTypeView(title: species.name, bgColor: bgColor)
-                            }
-                            .scrollDisabled(true)
-                        }
-                        Text("About")
-                            .foregroundColor(Color(viewModel.getTypeColor()))
-                            .font(.custom(FontManager.Poppins.bold, size: 14))
-                            .padding(.top, 16)
-                        AboutView(weight: viewModel.pokemonDetail.weight,
-                                  height: viewModel.pokemonDetail.height,
-                                  moves: viewModel.getMoves())
-                        .padding(.top)
-                        Text(viewModel.pkmDescription)
-                            .font(.custom(FontManager.Poppins.regule, size: 10))
-                            .foregroundColor(.black)
-                            .lineLimit(3)
-                            .padding(.top, 16)
-                        Text("Base Stats")
-                            .foregroundColor(Color(viewModel.getTypeColor()))
-                            .font(.custom(FontManager.Poppins.bold, size: 14))
-                            .padding(.top, 16)
-                        VStack {
-                            ForEach(viewModel.pokemonDetail.stats.indices, id: \.self) { idx in
-                                StatView(title: viewModel.getStatTitle()[idx],
-                                         value: String(viewModel.pokemonDetail.stats[idx].baseStat),
-                                         color: Color(viewModel.getTypeColor()))
-                            }
-                        }
-                        .padding(.top, 16)
+                            .padding(.horizontal, 16)
                         Spacer()
+                        Text("#\(String(format: "%04d", viewModel.pokemonDetail.id))")
+                            .font(.custom(FontManager.Poppins.bold, size: 12))
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(.leading, 16)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 48)
+                    .frame(height: 32)
+                    .padding(.horizontal, 24)
+                    ZStack {
+                        VStack {
+                            HStack {
+                                if viewModel.pokemonDetail.id <= 1 {
+                                    Spacer()
+                                } else {
+                                    Button {
+                                        viewModel.fetchPKMDetail(pkmId: String(viewModel.pokemonDetail.id - 1))
+                                    } label: {
+                                        Image(systemName: "chevron.left")
+                                            .foregroundColor(ColorManager.PKMWhite)
+                                    }
+                                }
+                                Spacer()
+                                if viewModel.pokemonDetail.id >= pkmCount {
+                                    Spacer()
+                                } else {
+                                    Button {
+                                        viewModel.fetchPKMDetail(pkmId: String(viewModel.pokemonDetail.id + 1))
+                                    } label: {
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(ColorManager.PKMWhite)
+                                    }
+                                }
+                            }
+                            .frame(height: 16)
+                            .padding(.vertical, 16)
+                            .padding(.horizontal, 24)
+                            ZStack {
+                                ColorManager.PKMBackground
+                                    .ignoresSafeArea(.all)
+                                    .cornerRadius(8.0)
+                            }
+                        }
+                        .padding(.top, deviceHeight/7)
+                        .padding(.bottom, 4)
+                        VStack {
+                            WebImage(url: URL(string: viewModel.pokemonDetail.sprites.other.officialArtwork.frontDefault))
+                                .resizable()
+                                .indicator(.activity)
+                                .scaledToFit()
+                                .frame(width: devicewidth/2, height: devicewidth/2)
+                            HStack {
+                                ForEach(viewModel.pokemonDetail.types.indices, id: \.self) { idx in
+                                    let species = viewModel.pokemonDetail.types[idx].type
+                                    let bgColor = viewModel.getTypesColor()[idx]
+                                    PokemonTypeView(title: species.name, bgColor: bgColor)
+                                }
+                                .scrollDisabled(true)
+                            }
+                            Text("About")
+                                .foregroundColor(Color(viewModel.getTypeColor()))
+                                .font(.custom(FontManager.Poppins.bold, size: 14))
+                                .padding(.top, 16)
+                            AboutView(weight: viewModel.pokemonDetail.weight,
+                                      height: viewModel.pokemonDetail.height,
+                                      moves: viewModel.getMoves())
+                            .padding(.top)
+                            Text(viewModel.pkmDescription
+                                .replacingOccurrences(of: "\\f", with: " "))
+                                .font(.custom(FontManager.Poppins.regule, size: 10))
+                                .foregroundColor(.black)
+                                .lineLimit(3)
+                                .padding(.top, 16)
+                            Text("Base Stats")
+                                .foregroundColor(Color(viewModel.getTypeColor()))
+                                .font(.custom(FontManager.Poppins.bold, size: 14))
+                                .padding(.top, 16)
+                            VStack {
+                                ForEach(viewModel.pokemonDetail.stats.indices, id: \.self) { idx in
+                                    StatView(title: viewModel.getStatTitle()[idx],
+                                             value: String(viewModel.pokemonDetail.stats[idx].baseStat),
+                                             color: Color(viewModel.getTypeColor()))
+                                }
+                            }
+                            .padding(.top, 16)
+                            .padding(.bottom, 32)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 32)
+                    }
+                    .padding(.horizontal, 8)
                 }
-                //                .padding(.top, 32)
-                .padding(.horizontal, 8)
             }
             if viewModel.isLoadData {
                 Color.black
@@ -163,6 +167,14 @@ struct PKMDetailView: View {
 
 struct PKMDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PKMDetailView(pkmId: "1", pkmCount: 1)
+        PKMDetailView(pkmId: "1", pkmCount: 12)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+            .previewDisplayName("iPhone 12")
+        PKMDetailView(pkmId: "1", pkmCount: 12)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+            .previewDisplayName("iPhone 8")
+        PKMDetailView(pkmId: "1", pkmCount: 12)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
+            .previewDisplayName("iPhone 14 Pro")
     }
 }
