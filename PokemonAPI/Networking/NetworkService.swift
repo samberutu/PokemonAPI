@@ -21,7 +21,6 @@ class NetworkService: NetworkServicing {
                 completion(.failure(.invalidURLRequest))
                 return
             }
-            print(myUrl)
             AF.request(myUrl)
                 .validate()
                 .response { response in

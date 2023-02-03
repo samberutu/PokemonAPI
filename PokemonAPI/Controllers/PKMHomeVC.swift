@@ -21,8 +21,6 @@ final class PKMHomeVC: UIViewController {
         collectionView.register(PokemonsCell.self, forCellWithReuseIdentifier: PokemonsCell.identifier)
         return collectionView
     }()
-    
-    var profiles: [Profile] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,22 +63,23 @@ final class PKMHomeVC: UIViewController {
                                                             transition: .crossDissolve(0.3))
     }
     
-    private func populateProfiles() {
-        profiles = [
-            Profile(name: "Thor", location: "Boston", imageName: "astronomy", profession: "astronomy"),
-            Profile(name: "Mike", location: "Albequerque", imageName: "basketball", profession: "basketball"),
-            Profile(name: "Walter White", location: "New Mexico", imageName: "chemistry", profession: "chemistry"),
-            Profile(name: "Sam Brothers", location: "California", imageName: "geography", profession: "geography"),
-            Profile(name: "Chopin", location: "Norway", imageName: "geometry", profession: "geometry"),
-            Profile(name: "Castles", location: "UK", imageName: "history", profession: "history"),
-            Profile(name: "Dr. Johnson", location: "Australia", imageName: "microscope", profession: "microscope"),
-            Profile(name: "Tom Hanks", location: "Bel Air", imageName: "theater", profession: "theater"),
-            Profile(name: "Roger Federer", location: "Switzerland", imageName: "trophy", profession: "trophy"),
-            Profile(name: "Elon Musk", location: "San Francisco", imageName: "graduate", profession: "graduate")
-        ]
-    }
 }
 
+// MARK: - Paginating
+
+extension PKMHomeVC {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.result.count -  1 && viewModel.result.count < viewModel.itemCount {
+            viewModel.limitItem += 20
+            viewModel.fetchPKMList {
+                DispatchQueue.main.async {
+                    self.setupData()
+                }
+            }
+        }
+    }
+}
+// MARK: - SekeltonView Data Spurce
 extension PKMHomeVC: SkeletonCollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
         PokemonsCell.identifier
@@ -104,7 +103,7 @@ extension PKMHomeVC: SkeletonCollectionViewDataSource, UICollectionViewDelegateF
     }
 
 }
-
+// MARK: - Segue
 extension PKMHomeVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.openSwiftUIScreen(pkmId: String(indexPath.row + 1), pkmCount: viewModel.itemCount)
@@ -122,9 +121,3 @@ enum LayoutConstant {
     static let width: CGFloat = (UIScreen.main.bounds.width-64)/3
 }
 
-struct Profile {
-    let name: String
-    let location: String
-    let imageName: String
-    let profession: String
-}
