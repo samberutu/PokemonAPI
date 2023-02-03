@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import Combine
 
 class PKMHomeViewModel {
@@ -14,6 +15,7 @@ class PKMHomeViewModel {
     var result: [PKMListModel] = []
     var previouwsLink: String = ""
     var nextLink: String = ""
+    var isPaginating = false
     var offsetItem = 0
     var limitItem = 20
     var itemCount = 0
@@ -23,6 +25,7 @@ class PKMHomeViewModel {
     }
     
     func fetchPKMList(action: @escaping () -> Void) {
+        isPaginating = true
         let endpoint = FetchPokemonEndpoint(pokemonEndpoint: .getPKMList(offset: offsetItem, limit: limitItem))
         networkRepository.request(to: endpoint, decodeTo: PKMListResponse<PKMListModel>.self)
             .receive(on: RunLoop.main)
@@ -40,8 +43,21 @@ class PKMHomeViewModel {
                 self.itemCount = response.count
                 self.result += response.results
                 self.offsetItem += response.results.count
+                self.isPaginating = false
                 action()
             }
             .store(in: &cancellables)        
+    }
+    
+    func createProgressView(view: UIView) -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0,
+                                              y: 0,
+                                              width: view.frame.size.width,
+                                              height: 100))
+        let progressView = UIActivityIndicatorView()
+        progressView.center = footerView.center
+        footerView.addSubview(progressView)
+        progressView.startAnimating()
+        return footerView
     }
 }
