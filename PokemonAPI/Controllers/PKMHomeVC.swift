@@ -31,6 +31,10 @@ final class PKMHomeVC: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     private func setupView() {
         title = "Pokemon"
         navigationController?.navigationBar.prefersLargeTitles = true
