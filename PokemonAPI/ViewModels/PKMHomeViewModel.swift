@@ -10,22 +10,23 @@ import UIKit
 import Combine
 
 class PKMHomeViewModel {
-    private let networkRepository: NetworkServicing
+    private let networkRepository: DataSourceRepositoryProtocol
     private var cancellables: Set<AnyCancellable> = []
     var result: [PKMListModel] = []
     var previouwsLink: String = ""
     var nextLink: String = ""
     var isPaginating = false
-    var offsetItem = 0
-    var limitItem = 20
+    var offsetItem = 30
+    var limitItem = 30
     var itemCount = 0
     
-    init(networkRepository: NetworkServicing = DataSourceRepository()) {
+    init(networkRepository: DataSourceRepositoryProtocol) {
         self.networkRepository = networkRepository
     }
     
     func fetchPKMList(action: @escaping () -> Void) {
         isPaginating = true
+        offsetItem += 30
         let endpoint = FetchPokemonEndpoint(pokemonEndpoint: .getPKMList(offset: offsetItem, limit: limitItem))
         networkRepository.request(to: endpoint, decodeTo: PKMListResponse<PKMListModel>.self)
             .receive(on: RunLoop.main)
@@ -37,14 +38,16 @@ class PKMHomeViewModel {
                     print("finish")
                     #endif
                 case .failure(let error):
+                    self.offsetItem -= 30
                     print(error.localizedDescription)
                 }
             } receiveValue: { response in
                 self.itemCount = response.count
-                self.result += response.results
-                self.offsetItem += response.results.count
+                self.result.append(contentsOf: response.results)
                 self.isPaginating = false
-                action()
+                DispatchQueue.main.async {
+                    action()
+                }
             }
             .store(in: &cancellables)        
     }
@@ -59,5 +62,13 @@ class PKMHomeViewModel {
         footerView.addSubview(progressView)
         progressView.startAnimating()
         return footerView
+    }
+    
+    func provideCellRepository() -> PKMCellViewModel {
+        return Injection.init().provideCellRepository()
+    }
+    
+    func providePKMDetailViewModel() -> PKMDetailViewModel {
+        return Injection.init().providePKMDetailViewModel()
     }
 }

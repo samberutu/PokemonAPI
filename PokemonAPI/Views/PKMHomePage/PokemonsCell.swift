@@ -14,7 +14,7 @@ protocol ReusableView: AnyObject {
 }
 
 class PokemonsCell: UICollectionViewCell, ReusableView {
-    var viewModel = PKMCellViewModel()
+    private var viewModel = Injection.init().provideCellRepository()
     static var identifier: String {
         return String(describing: self)
     }
