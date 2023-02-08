@@ -2,6 +2,7 @@ disabled_rules:
 - trailing_whitespace
 - unused_optional_binding
 - force_cast
+- redundant_string_enum_value
 opt_in_rules:
 - empty_count
 - empty_string

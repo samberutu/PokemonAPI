@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA104C912993A03700BFA509 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA104C902993A03700BFA509 /* AlertHelper.swift */; };
 		EA2B876B298421FD00606B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876A298421FD00606B83 /* AppDelegate.swift */; };
 		EA2B876D298421FD00606B83 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876C298421FD00606B83 /* SceneDelegate.swift */; };
 		EA2B876F298421FD00606B83 /* PKMHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876E298421FD00606B83 /* PKMHomeVC.swift */; };
@@ -16,9 +17,57 @@
 		EA2B87832984295400606B83 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EA2B87822984295400606B83 /* SDWebImage */; };
 		EA2B87862984297400606B83 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = EA2B87852984297400606B83 /* SkeletonView */; };
 		EA2B878E29842B5D00606B83 /* PKMDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B878D29842B5D00606B83 /* PKMDetailVC.swift */; };
+		EA2B87932984399100606B83 /* PokemonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B87922984399100606B83 /* PokemonsCell.swift */; };
+		EA2B87962984754900606B83 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B87952984754900606B83 /* UILabel+Ext.swift */; };
+		EA36C4F7298783E900586385 /* PokemonTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA36C4F6298783E900586385 /* PokemonTypeView.swift */; };
+		EA36C4F929878C2E00586385 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA36C4F829878C2E00586385 /* ColorManager.swift */; };
+		EA36C4FB29878F8E00586385 /* PKMTypeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA36C4FA29878F8E00586385 /* PKMTypeManager.swift */; };
+		EA65392129916D73004340D1 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65392029916D73004340D1 /* Injection.swift */; };
+		EA6B6DAF298A65E300D2BE91 /* PKMStatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6B6DAE298A65E300D2BE91 /* PKMStatManager.swift */; };
+		EA6B6DB1298A7BD000D2BE91 /* PKMFlavorTextEntries.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6B6DB0298A7BD000D2BE91 /* PKMFlavorTextEntries.swift */; };
+		EA6B6DB3298AA6B700D2BE91 /* PKMDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6B6DB2298AA6B700D2BE91 /* PKMDetailViewModel.swift */; };
+		EA6B6DB6298AAAD000D2BE91 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = EA6B6DB5298AAAD000D2BE91 /* SkeletonUI */; };
+		EA6B6DB9298AB60300D2BE91 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EA6B6DB8298AB60300D2BE91 /* SDWebImageSwiftUI */; };
+		EA6F281F298927760012BD84 /* PKMDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6F281E298927760012BD84 /* PKMDetailModel.swift */; };
+		EA73903A29882928003FF0B1 /* PKMHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73903929882928003FF0B1 /* PKMHomeViewModel.swift */; };
+		EA73903C29882AA5003FF0B1 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73903B29882AA5003FF0B1 /* Endpoint.swift */; };
+		EA73903E29882AEF003FF0B1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73903D29882AEF003FF0B1 /* NetworkError.swift */; };
+		EA73904029882B45003FF0B1 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73903F29882B45003FF0B1 /* NetworkLogger.swift */; };
+		EA73904229882B5F003FF0B1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73904129882B5F003FF0B1 /* NetworkService.swift */; };
+		EA73904529882CAB003FF0B1 /* PokemonEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73904429882CAB003FF0B1 /* PokemonEndpoint.swift */; };
+		EA73904729882D9C003FF0B1 /* PKMListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73904629882D9C003FF0B1 /* PKMListResponse.swift */; };
+		EA73904929882E1C003FF0B1 /* DataSourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73904829882E1C003FF0B1 /* DataSourceRepository.swift */; };
+		EA73904B29882FCC003FF0B1 /* PKMListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73904A29882FCC003FF0B1 /* PKMListModel.swift */; };
+		EA73904D29883651003FF0B1 /* FetchPokemonEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA73904C29883651003FF0B1 /* FetchPokemonEndpoint.swift */; };
+		EA8BE83E2986C07C0049F6A7 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BE83D2986C07C0049F6A7 /* StatView.swift */; };
+		EA8BE8402986C64F0049F6A7 /* StatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BE83F2986C64F0049F6A7 /* StatModel.swift */; };
+		EA8BE8422986CD430049F6A7 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BE8412986CD430049F6A7 /* AboutView.swift */; };
+		EADB52DB298675DD00886F35 /* PKMDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB52DA298675DD00886F35 /* PKMDetailView.swift */; };
+		EADB52F12986926100886F35 /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52DE2986925F00886F35 /* Poppins-ExtraBoldItalic.ttf */; };
+		EADB52F22986926100886F35 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52DF2986925F00886F35 /* Poppins-Black.ttf */; };
+		EADB52F32986926100886F35 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E02986925F00886F35 /* Poppins-ExtraLight.ttf */; };
+		EADB52F42986926100886F35 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E12986925F00886F35 /* Poppins-Medium.ttf */; };
+		EADB52F52986926100886F35 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E22986925F00886F35 /* Poppins-Regular.ttf */; };
+		EADB52F62986926100886F35 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E32986926000886F35 /* Poppins-Italic.ttf */; };
+		EADB52F72986926100886F35 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E42986926000886F35 /* Poppins-LightItalic.ttf */; };
+		EADB52F82986926100886F35 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E52986926000886F35 /* Poppins-SemiBold.ttf */; };
+		EADB52F92986926100886F35 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E62986926000886F35 /* OFL.txt */; };
+		EADB52FA2986926100886F35 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E72986926000886F35 /* Poppins-BoldItalic.ttf */; };
+		EADB52FB2986926100886F35 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E82986926000886F35 /* Poppins-ExtraBold.ttf */; };
+		EADB52FC2986926100886F35 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52E92986926000886F35 /* Poppins-Light.ttf */; };
+		EADB52FD2986926100886F35 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52EA2986926000886F35 /* Poppins-MediumItalic.ttf */; };
+		EADB52FE2986926100886F35 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52EB2986926000886F35 /* Poppins-ExtraLightItalic.ttf */; };
+		EADB52FF2986926100886F35 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52EC2986926000886F35 /* Poppins-SemiBoldItalic.ttf */; };
+		EADB53002986926100886F35 /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52ED2986926100886F35 /* Poppins-BlackItalic.ttf */; };
+		EADB53012986926100886F35 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52EE2986926100886F35 /* Poppins-Bold.ttf */; };
+		EADB53022986926100886F35 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52EF2986926100886F35 /* Poppins-Thin.ttf */; };
+		EADB53032986926100886F35 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52F02986926100886F35 /* Poppins-ThinItalic.ttf */; };
+		EADB53062986931900886F35 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB53052986931900886F35 /* FontManager.swift */; };
+		EAF5DD5D2989676D0090754E /* PKMCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF5DD5C2989676D0090754E /* PKMCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA104C902993A03700BFA509 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		EA2B8767298421FD00606B83 /* PokemonAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2B876A298421FD00606B83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA2B876C298421FD00606B83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +77,51 @@
 		EA2B8778298421FE00606B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA2B878D29842B5D00606B83 /* PKMDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMDetailVC.swift; sourceTree = "<group>"; };
 		EA2B8790298431AD00606B83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		EA2B87922984399100606B83 /* PokemonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsCell.swift; sourceTree = "<group>"; };
+		EA2B87952984754900606B83 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		EA36C4F6298783E900586385 /* PokemonTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeView.swift; sourceTree = "<group>"; };
+		EA36C4F829878C2E00586385 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		EA36C4FA29878F8E00586385 /* PKMTypeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMTypeManager.swift; sourceTree = "<group>"; };
+		EA65392029916D73004340D1 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
+		EA6B6DAE298A65E300D2BE91 /* PKMStatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMStatManager.swift; sourceTree = "<group>"; };
+		EA6B6DB0298A7BD000D2BE91 /* PKMFlavorTextEntries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMFlavorTextEntries.swift; sourceTree = "<group>"; };
+		EA6B6DB2298AA6B700D2BE91 /* PKMDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMDetailViewModel.swift; sourceTree = "<group>"; };
+		EA6F281E298927760012BD84 /* PKMDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMDetailModel.swift; sourceTree = "<group>"; };
+		EA73903929882928003FF0B1 /* PKMHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMHomeViewModel.swift; sourceTree = "<group>"; };
+		EA73903B29882AA5003FF0B1 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		EA73903D29882AEF003FF0B1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		EA73903F29882B45003FF0B1 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		EA73904129882B5F003FF0B1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		EA73904429882CAB003FF0B1 /* PokemonEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonEndpoint.swift; sourceTree = "<group>"; };
+		EA73904629882D9C003FF0B1 /* PKMListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMListResponse.swift; sourceTree = "<group>"; };
+		EA73904829882E1C003FF0B1 /* DataSourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceRepository.swift; sourceTree = "<group>"; };
+		EA73904A29882FCC003FF0B1 /* PKMListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMListModel.swift; sourceTree = "<group>"; };
+		EA73904C29883651003FF0B1 /* FetchPokemonEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPokemonEndpoint.swift; sourceTree = "<group>"; };
+		EA8BE83D2986C07C0049F6A7 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
+		EA8BE83F2986C64F0049F6A7 /* StatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatModel.swift; sourceTree = "<group>"; };
+		EA8BE8412986CD430049F6A7 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		EADB52DA298675DD00886F35 /* PKMDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMDetailView.swift; sourceTree = "<group>"; };
+		EADB52DE2986925F00886F35 /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		EADB52DF2986925F00886F35 /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		EADB52E02986925F00886F35 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		EADB52E12986925F00886F35 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		EADB52E22986925F00886F35 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		EADB52E32986926000886F35 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
+		EADB52E42986926000886F35 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
+		EADB52E52986926000886F35 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		EADB52E62986926000886F35 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		EADB52E72986926000886F35 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		EADB52E82986926000886F35 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EADB52E92986926000886F35 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		EADB52EA2986926000886F35 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		EADB52EB2986926000886F35 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		EADB52EC2986926000886F35 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		EADB52ED2986926100886F35 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
+		EADB52EE2986926100886F35 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		EADB52EF2986926100886F35 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		EADB52F02986926100886F35 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
+		EADB53052986931900886F35 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		EAF5DD5C2989676D0090754E /* PKMCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +129,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA6B6DB9298AB60300D2BE91 /* SDWebImageSwiftUI in Frameworks */,
 				EA2B87832984295400606B83 /* SDWebImage in Frameworks */,
+				EA6B6DB6298AAAD000D2BE91 /* SkeletonUI in Frameworks */,
 				EA2B87862984297400606B83 /* SkeletonView in Frameworks */,
 				EA2B87802984292800606B83 /* Alamofire in Frameworks */,
 			);
@@ -65,11 +161,14 @@
 			isa = PBXGroup;
 			children = (
 				EA2B878C29842ADF00606B83 /* Resources */,
-				EA2B878B29842ACE00606B83 /* APIClient */,
+				EA2B87942984752D00606B83 /* Extension */,
+				EA2B878B29842ACE00606B83 /* Networking */,
+				EA73904329882C86003FF0B1 /* Domain */,
 				EA2B878A29842ABB00606B83 /* ViewModels */,
 				EA2B878929842AAB00606B83 /* Views */,
 				EA2B878829842AA000606B83 /* Models */,
 				EA2B878729842A8D00606B83 /* Controllers */,
+				EADB52DC298691C700886F35 /* Utility */,
 				EA2B8778298421FE00606B83 /* Info.plist */,
 			);
 			path = PokemonAPI;
@@ -87,6 +186,10 @@
 		EA2B878829842AA000606B83 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EA8BE83F2986C64F0049F6A7 /* StatModel.swift */,
+				EA73904A29882FCC003FF0B1 /* PKMListModel.swift */,
+				EA6F281E298927760012BD84 /* PKMDetailModel.swift */,
+				EA6B6DB0298A7BD000D2BE91 /* PKMFlavorTextEntries.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -94,6 +197,8 @@
 		EA2B878929842AAB00606B83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EADB52D9298675A400886F35 /* PKMDetailPage */,
+				EA2B87912984394B00606B83 /* PKMHomePage */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,15 +206,23 @@
 		EA2B878A29842ABB00606B83 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				EA73903929882928003FF0B1 /* PKMHomeViewModel.swift */,
+				EAF5DD5C2989676D0090754E /* PKMCellViewModel.swift */,
+				EA6B6DB2298AA6B700D2BE91 /* PKMDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		EA2B878B29842ACE00606B83 /* APIClient */ = {
+		EA2B878B29842ACE00606B83 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				EA65391F29916D65004340D1 /* DI */,
+				EA73903B29882AA5003FF0B1 /* Endpoint.swift */,
+				EA73903D29882AEF003FF0B1 /* NetworkError.swift */,
+				EA73903F29882B45003FF0B1 /* NetworkLogger.swift */,
+				EA73904129882B5F003FF0B1 /* NetworkService.swift */,
 			);
-			path = APIClient;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		EA2B878C29842ADF00606B83 /* Resources */ = {
@@ -121,6 +234,91 @@
 				EA2B8775298421FE00606B83 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EA2B87912984394B00606B83 /* PKMHomePage */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B87922984399100606B83 /* PokemonsCell.swift */,
+			);
+			path = PKMHomePage;
+			sourceTree = "<group>";
+		};
+		EA2B87942984752D00606B83 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B87952984754900606B83 /* UILabel+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		EA65391F29916D65004340D1 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				EA65392029916D73004340D1 /* Injection.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		EA73904329882C86003FF0B1 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				EA73904429882CAB003FF0B1 /* PokemonEndpoint.swift */,
+				EA73904629882D9C003FF0B1 /* PKMListResponse.swift */,
+				EA73904829882E1C003FF0B1 /* DataSourceRepository.swift */,
+				EA73904C29883651003FF0B1 /* FetchPokemonEndpoint.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		EADB52D9298675A400886F35 /* PKMDetailPage */ = {
+			isa = PBXGroup;
+			children = (
+				EADB52DA298675DD00886F35 /* PKMDetailView.swift */,
+				EA8BE83D2986C07C0049F6A7 /* StatView.swift */,
+				EA8BE8412986CD430049F6A7 /* AboutView.swift */,
+				EA36C4F6298783E900586385 /* PokemonTypeView.swift */,
+			);
+			path = PKMDetailPage;
+			sourceTree = "<group>";
+		};
+		EADB52DC298691C700886F35 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				EADB52DD298691E100886F35 /* Font */,
+				EADB53052986931900886F35 /* FontManager.swift */,
+				EA36C4F829878C2E00586385 /* ColorManager.swift */,
+				EA36C4FA29878F8E00586385 /* PKMTypeManager.swift */,
+				EA6B6DAE298A65E300D2BE91 /* PKMStatManager.swift */,
+				EA104C902993A03700BFA509 /* AlertHelper.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		EADB52DD298691E100886F35 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				EADB52E62986926000886F35 /* OFL.txt */,
+				EADB52DF2986925F00886F35 /* Poppins-Black.ttf */,
+				EADB52ED2986926100886F35 /* Poppins-BlackItalic.ttf */,
+				EADB52EE2986926100886F35 /* Poppins-Bold.ttf */,
+				EADB52E72986926000886F35 /* Poppins-BoldItalic.ttf */,
+				EADB52E82986926000886F35 /* Poppins-ExtraBold.ttf */,
+				EADB52DE2986925F00886F35 /* Poppins-ExtraBoldItalic.ttf */,
+				EADB52E02986925F00886F35 /* Poppins-ExtraLight.ttf */,
+				EADB52EB2986926000886F35 /* Poppins-ExtraLightItalic.ttf */,
+				EADB52E32986926000886F35 /* Poppins-Italic.ttf */,
+				EADB52E92986926000886F35 /* Poppins-Light.ttf */,
+				EADB52E42986926000886F35 /* Poppins-LightItalic.ttf */,
+				EADB52E12986925F00886F35 /* Poppins-Medium.ttf */,
+				EADB52EA2986926000886F35 /* Poppins-MediumItalic.ttf */,
+				EADB52E22986925F00886F35 /* Poppins-Regular.ttf */,
+				EADB52E52986926000886F35 /* Poppins-SemiBold.ttf */,
+				EADB52EC2986926000886F35 /* Poppins-SemiBoldItalic.ttf */,
+				EADB52EF2986926100886F35 /* Poppins-Thin.ttf */,
+				EADB52F02986926100886F35 /* Poppins-ThinItalic.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +342,8 @@
 				EA2B877F2984292800606B83 /* Alamofire */,
 				EA2B87822984295400606B83 /* SDWebImage */,
 				EA2B87852984297400606B83 /* SkeletonView */,
+				EA6B6DB5298AAAD000D2BE91 /* SkeletonUI */,
+				EA6B6DB8298AB60300D2BE91 /* SDWebImageSwiftUI */,
 			);
 			productName = PokemonAPI;
 			productReference = EA2B8767298421FD00606B83 /* PokemonAPI.app */;
@@ -177,6 +377,8 @@
 				EA2B877E2984292800606B83 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				EA2B87812984295400606B83 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				EA2B87842984297400606B83 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				EA6B6DB4298AAAD000D2BE91 /* XCRemoteSwiftPackageReference "SkeletonUI" */,
+				EA6B6DB7298AB60300D2BE91 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = EA2B8768298421FD00606B83 /* Products */;
 			projectDirPath = "";
@@ -192,8 +394,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EADB52FE2986926100886F35 /* Poppins-ExtraLightItalic.ttf in Resources */,
+				EADB52F32986926100886F35 /* Poppins-ExtraLight.ttf in Resources */,
+				EADB52F92986926100886F35 /* OFL.txt in Resources */,
+				EADB52F22986926100886F35 /* Poppins-Black.ttf in Resources */,
+				EADB52FF2986926100886F35 /* Poppins-SemiBoldItalic.ttf in Resources */,
+				EADB52FA2986926100886F35 /* Poppins-BoldItalic.ttf in Resources */,
+				EADB53012986926100886F35 /* Poppins-Bold.ttf in Resources */,
+				EADB52FD2986926100886F35 /* Poppins-MediumItalic.ttf in Resources */,
+				EADB52F62986926100886F35 /* Poppins-Italic.ttf in Resources */,
+				EADB53022986926100886F35 /* Poppins-Thin.ttf in Resources */,
+				EADB52F52986926100886F35 /* Poppins-Regular.ttf in Resources */,
+				EADB52F12986926100886F35 /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				EADB53032986926100886F35 /* Poppins-ThinItalic.ttf in Resources */,
+				EADB52FC2986926100886F35 /* Poppins-Light.ttf in Resources */,
+				EADB52F82986926100886F35 /* Poppins-SemiBold.ttf in Resources */,
+				EADB52F42986926100886F35 /* Poppins-Medium.ttf in Resources */,
 				EA2B8777298421FE00606B83 /* LaunchScreen.storyboard in Resources */,
+				EADB52F72986926100886F35 /* Poppins-LightItalic.ttf in Resources */,
 				EA2B8774298421FE00606B83 /* Assets.xcassets in Resources */,
+				EADB53002986926100886F35 /* Poppins-BlackItalic.ttf in Resources */,
+				EADB52FB2986926100886F35 /* Poppins-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,10 +445,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA73903E29882AEF003FF0B1 /* NetworkError.swift in Sources */,
 				EA2B878E29842B5D00606B83 /* PKMDetailVC.swift in Sources */,
+				EAF5DD5D2989676D0090754E /* PKMCellViewModel.swift in Sources */,
+				EA73904529882CAB003FF0B1 /* PokemonEndpoint.swift in Sources */,
 				EA2B876F298421FD00606B83 /* PKMHomeVC.swift in Sources */,
+				EA36C4FB29878F8E00586385 /* PKMTypeManager.swift in Sources */,
+				EA36C4F7298783E900586385 /* PokemonTypeView.swift in Sources */,
+				EA8BE8422986CD430049F6A7 /* AboutView.swift in Sources */,
+				EA73904029882B45003FF0B1 /* NetworkLogger.swift in Sources */,
 				EA2B876B298421FD00606B83 /* AppDelegate.swift in Sources */,
+				EA6B6DAF298A65E300D2BE91 /* PKMStatManager.swift in Sources */,
+				EA73904D29883651003FF0B1 /* FetchPokemonEndpoint.swift in Sources */,
+				EA73904B29882FCC003FF0B1 /* PKMListModel.swift in Sources */,
+				EA8BE83E2986C07C0049F6A7 /* StatView.swift in Sources */,
+				EA2B87932984399100606B83 /* PokemonsCell.swift in Sources */,
+				EA65392129916D73004340D1 /* Injection.swift in Sources */,
+				EA6B6DB3298AA6B700D2BE91 /* PKMDetailViewModel.swift in Sources */,
+				EA73903A29882928003FF0B1 /* PKMHomeViewModel.swift in Sources */,
+				EA36C4F929878C2E00586385 /* ColorManager.swift in Sources */,
+				EA73904729882D9C003FF0B1 /* PKMListResponse.swift in Sources */,
+				EA73903C29882AA5003FF0B1 /* Endpoint.swift in Sources */,
+				EADB52DB298675DD00886F35 /* PKMDetailView.swift in Sources */,
+				EA2B87962984754900606B83 /* UILabel+Ext.swift in Sources */,
+				EA73904229882B5F003FF0B1 /* NetworkService.swift in Sources */,
+				EA73904929882E1C003FF0B1 /* DataSourceRepository.swift in Sources */,
+				EADB53062986931900886F35 /* FontManager.swift in Sources */,
+				EA6F281F298927760012BD84 /* PKMDetailModel.swift in Sources */,
+				EA6B6DB1298A7BD000D2BE91 /* PKMFlavorTextEntries.swift in Sources */,
 				EA2B876D298421FD00606B83 /* SceneDelegate.swift in Sources */,
+				EA104C912993A03700BFA509 /* AlertHelper.swift in Sources */,
+				EA8BE8402986C64F0049F6A7 /* StatModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +709,22 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		EA6B6DB4298AAAD000D2BE91 /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CSolanaM/SkeletonUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		EA6B6DB7298AB60300D2BE91 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -478,6 +742,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EA2B87842984297400606B83 /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
+		};
+		EA6B6DB5298AAAD000D2BE91 /* SkeletonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA6B6DB4298AAAD000D2BE91 /* XCRemoteSwiftPackageReference "SkeletonUI" */;
+			productName = SkeletonUI;
+		};
+		EA6B6DB8298AB60300D2BE91 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA6B6DB7298AB60300D2BE91 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
