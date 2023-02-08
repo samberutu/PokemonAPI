@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA104C912993A03700BFA509 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA104C902993A03700BFA509 /* AlertHelper.swift */; };
 		EA2B876B298421FD00606B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876A298421FD00606B83 /* AppDelegate.swift */; };
 		EA2B876D298421FD00606B83 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876C298421FD00606B83 /* SceneDelegate.swift */; };
 		EA2B876F298421FD00606B83 /* PKMHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B876E298421FD00606B83 /* PKMHomeVC.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA104C902993A03700BFA509 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		EA2B8767298421FD00606B83 /* PokemonAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2B876A298421FD00606B83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA2B876C298421FD00606B83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				EA36C4F829878C2E00586385 /* ColorManager.swift */,
 				EA36C4FA29878F8E00586385 /* PKMTypeManager.swift */,
 				EA6B6DAE298A65E300D2BE91 /* PKMStatManager.swift */,
+				EA104C902993A03700BFA509 /* AlertHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				EA6F281F298927760012BD84 /* PKMDetailModel.swift in Sources */,
 				EA6B6DB1298A7BD000D2BE91 /* PKMFlavorTextEntries.swift in Sources */,
 				EA2B876D298421FD00606B83 /* SceneDelegate.swift in Sources */,
+				EA104C912993A03700BFA509 /* AlertHelper.swift in Sources */,
 				EA8BE8402986C64F0049F6A7 /* StatModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -65,6 +65,7 @@ struct PKMDetailView: View {
                                     Spacer()
                                 } else {
                                     Button {
+                                        viewModel.setupNewValue()
                                         viewModel.fetchPKMDetail(pkmId: String(viewModel.pokemonDetail.id - 1))
                                     } label: {
                                         Image(systemName: "chevron.left")
@@ -76,6 +77,7 @@ struct PKMDetailView: View {
                                     Spacer()
                                 } else {
                                     Button {
+                                        viewModel.setupNewValue()
                                         viewModel.fetchPKMDetail(pkmId: String(viewModel.pokemonDetail.id + 1))
                                     } label: {
                                         Image(systemName: "chevron.right")
@@ -150,8 +152,10 @@ struct PKMDetailView: View {
                 VStack {
                     ProgressView()
                         .scaleEffect(2)
-                    Text(viewModel.errorMessage)
+                        .foregroundColor(.white)
+                    Text("Loading")
                         .font(.custom(FontManager.Poppins.bold, size: 14))
+                        .foregroundColor(.white)
                         .padding()
                 }
                 
@@ -160,6 +164,17 @@ struct PKMDetailView: View {
         .navigationBarHidden(true)
         .onAppear {
             viewModel.fetchPKMDetail(pkmId: pkmId)
+        }
+        .alert(isPresented: $viewModel.isError) {
+            Alert(title: Text("Error"),
+                  message: Text(viewModel.errorMessage),
+                  dismissButton: .default(Text("Muat Ulang"), action: {
+                guard viewModel.pokemonDetail.id != 0 else {
+                    viewModel.fetchPKMDetail(pkmId: pkmId)
+                    return
+                }
+                viewModel.fetchPKMDetail(pkmId: String(viewModel.pokemonDetail.id))
+            }))
         }
     }
     

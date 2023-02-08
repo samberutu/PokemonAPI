@@ -35,9 +35,14 @@ class PKMHomeVC: UIViewController {
         super.viewDidLoad()
         setupView()
         setupSkeletonView()
-        viewModel.fetchPKMList {
+        viewModel.fetchPKMList(viewController: self) {
             self.setupData()
+        } failureAction: {
+            self.viewModel.fetchPKMList(viewController: self) {
+                self.setupData()
+            }
         }
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,10 +91,14 @@ extension PKMHomeVC: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for index in indexPaths {
             if index.row >= viewModel.result.count - 3 && !viewModel.isPaginating {
-                viewModel.fetchPKMList {
+                viewModel.fetchPKMList(viewController: self) {
                     self.setupData()
+                } failureAction: {
+                    self.viewModel.fetchPKMList(viewController: self) {
+                        self.setupData()
+                    }
                 }
-                print("fetch data bang")
+
                 break
             }
         }

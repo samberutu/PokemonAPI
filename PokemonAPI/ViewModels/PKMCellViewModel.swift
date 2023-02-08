@@ -15,24 +15,24 @@ class PKMCellViewModel {
     private var cancellables: Set<AnyCancellable> = []
     
     var pokemonDetail: PKMDetailModel = PKMDetailModel.seeder
+    var isLoadData = false
     
     init(networkRepository: DataSourceRepositoryProtocol) {
         self.networkRepository = networkRepository
     }
     
     func fetchPKMDetail(id: String, action: @escaping () -> Void) {
+        isLoadData = true
         let endpoint = FetchPokemonEndpoint(pokemonEndpoint: .getPKMDetail(id: id))
         networkRepository.request(to: endpoint, decodeTo: PKMDetailModel.self)
             .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
-                    
                 case .finished:
-                    #if DEBUG
-                    print("finish")
-                    #endif
+                    self.isLoadData = false
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    self.isLoadData = false
+                    print(error.errorMessage)
                 }
             } receiveValue: { response in
                 self.pokemonDetail = response
