@@ -9,8 +9,17 @@ import UIKit
 import SkeletonView
 import SwiftUI
 
-final class PKMHomeVC: UIViewController {
-    private var viewModel = PKMHomeViewModel()
+class PKMHomeVC: UIViewController {
+    private var viewModel: PKMHomeViewModel
+    
+    init(viewModel: PKMHomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private var pokemonsCollectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -41,6 +50,7 @@ final class PKMHomeVC: UIViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor(ColorManager.PKMDarkGray)]
         pokemonsCollectionView.dataSource = self
         pokemonsCollectionView.delegate = self
+        pokemonsCollectionView.prefetchDataSource = self
         view.addSubview(pokemonsCollectionView)
         pokemonsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -71,18 +81,22 @@ final class PKMHomeVC: UIViewController {
 
 // MARK: - Paginating
 
-extension PKMHomeVC {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == viewModel.result.count -  1 && viewModel.result.count < viewModel.itemCount {
-            viewModel.limitItem += 20
-            viewModel.fetchPKMList {
-                DispatchQueue.main.async {
+extension PKMHomeVC: UICollectionViewDataSourcePrefetching {
+
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for index in indexPaths {
+            if index.row >= viewModel.result.count - 3 && !viewModel.isPaginating {
+                viewModel.fetchPKMList {
                     self.setupData()
                 }
+                print("fetch data bang")
+                break
             }
         }
     }
+
 }
+
 // MARK: - SekeltonView Data Spurce
 extension PKMHomeVC: SkeletonCollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
@@ -114,7 +128,9 @@ extension PKMHomeVC: UICollectionViewDelegate {
     }
     
     func openSwiftUIScreen(pkmId: String, pkmCount: Int) {
-        let swiftUIViewController = UIHostingController(rootView: PKMDetailView(pkmId: pkmId, pkmCount: pkmCount))
+        let swiftUIViewController = UIHostingController(rootView: PKMDetailView(pkmId: pkmId,
+                                                                                pkmCount: pkmCount,
+                                                                                viewModel: self.viewModel.providePKMDetailViewModel()))
         self.navigationController?.pushViewController(swiftUIViewController, animated: true)
     }
 }
@@ -124,4 +140,3 @@ enum LayoutConstant {
     static let spacing: CGFloat = 2
     static let width: CGFloat = (UIScreen.main.bounds.width-64)/3
 }
-

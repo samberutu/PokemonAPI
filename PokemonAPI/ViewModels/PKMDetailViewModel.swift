@@ -15,10 +15,10 @@ class PKMDetailViewModel: ObservableObject {
     @Published var errorMessage = "Loading.."
     @Published var pkmDescription = "Description"
     
-    private let networkRepository: NetworkServicing
+    private let networkRepository: DataSourceRepositoryProtocol
     private var cancellables: Set<AnyCancellable> = []
     
-    init(networkRepository: NetworkServicing = DataSourceRepository()) {
+    init(networkRepository: DataSourceRepositoryProtocol) {
         self.networkRepository = networkRepository
     }
     

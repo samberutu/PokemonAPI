@@ -12,12 +12,18 @@ protocol DataSourceRepositoryProtocol {
     func request<T: Decodable, E: Endpoint>(to endpoint: E, decodeTo model: T.Type) -> AnyPublisher<T, NetworkError>
 }
 
-class DataSourceRepository: NetworkServicing {
+class DataSourceRepository: DataSourceRepositoryProtocol {
+    
+    typealias DataSourceInstance = (NetworkService) -> DataSourceRepository
     
     private let networkService: NetworkServicing
     
-    internal init(networkService: NetworkServicing = NetworkService()) {
+    internal init(networkService: NetworkServicing) {
         self.networkService = networkService
+    }
+    
+    static let sharedInstance: DataSourceInstance = { networkService in
+        DataSourceRepository(networkService: networkService)
     }
     
     func request<T, E>(to endpoint: E, decodeTo model: T.Type) -> AnyPublisher<T, NetworkError> where T: Decodable, E: Endpoint {

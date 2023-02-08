@@ -11,12 +11,12 @@ import SwiftUI
 import Combine
 
 class PKMCellViewModel {
-    private let networkRepository: NetworkServicing
+    private let networkRepository: DataSourceRepositoryProtocol
     private var cancellables: Set<AnyCancellable> = []
     
     var pokemonDetail: PKMDetailModel = PKMDetailModel.seeder
     
-    init(networkRepository: NetworkServicing = DataSourceRepository()) {
+    init(networkRepository: DataSourceRepositoryProtocol) {
         self.networkRepository = networkRepository
     }
     

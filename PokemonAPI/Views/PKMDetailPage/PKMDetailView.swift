@@ -12,7 +12,7 @@ struct PKMDetailView: View {
     @Environment(\.presentationMode) var presentation
     let pkmId: String
     let pkmCount: Int
-    @StateObject var viewModel = PKMDetailViewModel()
+    @StateObject var viewModel: PKMDetailViewModel
     let devicewidth = UIScreen.main.bounds.size.width
     let deviceHeight = UIScreen.main.bounds.size.height
     var body: some View {
@@ -166,14 +166,15 @@ struct PKMDetailView: View {
 }
 
 struct PKMDetailView_Previews: PreviewProvider {
+    let viewModel = Injection.init().providePKMDetailViewModel()
     static var previews: some View {
-        PKMDetailView(pkmId: "1", pkmCount: 12)
+        PKMDetailView(pkmId: "1", pkmCount: 12, viewModel: Injection.init().providePKMDetailViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
             .previewDisplayName("iPhone 12")
-        PKMDetailView(pkmId: "1", pkmCount: 12)
+        PKMDetailView(pkmId: "1", pkmCount: 12, viewModel: Injection.init().providePKMDetailViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
             .previewDisplayName("iPhone 8")
-        PKMDetailView(pkmId: "1", pkmCount: 12)
+        PKMDetailView(pkmId: "1", pkmCount: 12, viewModel: Injection.init().providePKMDetailViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
             .previewDisplayName("iPhone 14 Pro")
     }

@@ -13,7 +13,15 @@ protocol NetworkServicing {
     func request<T: Decodable, E: Endpoint>(to endpoint: E, decodeTo model: T.Type) -> AnyPublisher<T, NetworkError>
 }
 
-class NetworkService: NetworkServicing {
+class NetworkService: NSObject {
+    
+    private override init() { }
+    
+    static let sharedInstance: NetworkService = NetworkService()
+}
+
+extension NetworkService: NetworkServicing {
+    
     func request<T: Decodable, E: Endpoint>(to endpoint: E, decodeTo model: T.Type) -> AnyPublisher<T, NetworkError> {
         
         return Future<T, NetworkError> { completion in
