@@ -24,9 +24,8 @@ class PKMHomeViewModel {
         self.networkRepository = networkRepository
     }
     
-    func fetchPKMList(action: @escaping () -> Void) {
+    func fetchPKMList(viewController: UIViewController, successAction: @escaping () -> Void, failureAction: (() -> Void)? = nil) {
         isPaginating = true
-        offsetItem += 30
         let endpoint = FetchPokemonEndpoint(pokemonEndpoint: .getPKMList(offset: offsetItem, limit: limitItem))
         networkRepository.request(to: endpoint, decodeTo: PKMListResponse<PKMListModel>.self)
             .receive(on: RunLoop.main)
@@ -34,19 +33,17 @@ class PKMHomeViewModel {
                 switch completion {
                     
                 case .finished:
-                    #if DEBUG
-                    print("finish")
-                    #endif
+                    self.isPaginating = false
+                    self.offsetItem += 30
                 case .failure(let error):
                     self.offsetItem -= 30
-                    print(error.localizedDescription)
+                    AlertHelper.displayError(message: error.errorMessage, viewController: viewController, action: failureAction)
                 }
             } receiveValue: { response in
                 self.itemCount = response.count
                 self.result.append(contentsOf: response.results)
-                self.isPaginating = false
                 DispatchQueue.main.async {
-                    action()
+                    successAction()
                 }
             }
             .store(in: &cancellables)        

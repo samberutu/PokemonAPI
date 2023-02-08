@@ -12,8 +12,10 @@ import SwiftUI
 class PKMDetailViewModel: ObservableObject {
     @Published var pokemonDetail = PKMDetailModel.seeder
     @Published var isLoadData = false
-    @Published var errorMessage = "Loading.."
+    @Published var isError = false
+    @Published var errorMessage = ""
     @Published var pkmDescription = "Description"
+    @Published var didFetchCounter = 0
     
     private let networkRepository: DataSourceRepositoryProtocol
     private var cancellables: Set<AnyCancellable> = []
@@ -24,20 +26,22 @@ class PKMDetailViewModel: ObservableObject {
     
     func fetchPKMDetail(pkmId: String) {
         isLoadData.toggle()
+        isError = false
+        didFetchCounter += 1
         let endpoint = FetchPokemonEndpoint(pokemonEndpoint: .getPKMDetail(id: pkmId))
         networkRepository.request(to: endpoint, decodeTo: PKMDetailModel.self)
             .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("sucess fetch pkm detail")
+                    self.fetchPKMDescription()
                 case .failure(let error):
-                    self.errorMessage = error.localizedDescription
+                    self.errorMessage = error.errorMessage
                     self.isLoadData.toggle()
+                    self.isError = true && self.didFetchCounter < 3
                 }
             } receiveValue: { response in
                 self.pokemonDetail = response
-                self.fetchPKMDescription()
             }
             .store(in: &cancellables)
     }
@@ -49,10 +53,12 @@ class PKMDetailViewModel: ObservableObject {
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("finis pkm description")
                     self.isLoadData.toggle()
+                    self.isError = false
                 case .failure(let error):
-                    print("Fail pkm decription \(error.localizedDescription)")
+                    self.errorMessage = error.errorMessage
+                    self.isLoadData.toggle()
+                    self.isError = true && self.didFetchCounter < 3
                 }
             } receiveValue: { species in
                 self.getRandomDescription(descriptions: species.flavorTextEntries)
@@ -96,6 +102,9 @@ class PKMDetailViewModel: ObservableObject {
         }
         
         return convertedTitle
+    }
+    func setupNewValue() {
+        didFetchCounter = 0
     }
     
 }

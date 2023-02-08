@@ -11,6 +11,7 @@ import Alamofire
 
 protocol NetworkServicing {
     func request<T: Decodable, E: Endpoint>(to endpoint: E, decodeTo model: T.Type) -> AnyPublisher<T, NetworkError>
+    func networkErrorHandle(statusCode: Int) -> NetworkError
 }
 
 class NetworkService: NSObject {
@@ -34,26 +35,33 @@ extension NetworkService: NetworkServicing {
                 .response { response in
                     switch response.result {
                     case .success(let value):
+                        guard let response = response.response else {
+                            return completion(.failure(.noResponse))
+                        }
 //                        #if DEBUG
 //                        NetworkLogger.log(data: value ?? Data(), response: response.response!)
 //                        #endif
-                        guard response.response?.statusCode != 401 else {
+                        guard response.statusCode != 401 else {
                             return completion(.failure(.unauthorized))
                         }
-                        
-                        if let newDecode = try? JSONDecoder().decode(model.self, from: value ?? Data()) {
-                            completion(.success(newDecode))
-                        } else {
-                            completion(.failure(.decoding))
+            
+                        guard let decodeData = try? JSONDecoder().decode(model.self, from: value ?? Data()) else {
+                            return completion(.failure(.decoding))
                         }
+                        completion(.success(decodeData))
                         
                     case .failure:
-                        completion(.failure(.noResponse))
+                        completion(.failure(.underlying(response.error!)))
                     }
 
                 }
             
         }
         .eraseToAnyPublisher()
+    }
+    
+    func networkErrorHandle(statusCode: Int) -> NetworkError {
+        
+        return .unauthorized
     }
 }
