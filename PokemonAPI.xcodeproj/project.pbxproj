@@ -42,6 +42,7 @@
 		EA8BE83E2986C07C0049F6A7 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BE83D2986C07C0049F6A7 /* StatView.swift */; };
 		EA8BE8402986C64F0049F6A7 /* StatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BE83F2986C64F0049F6A7 /* StatModel.swift */; };
 		EA8BE8422986CD430049F6A7 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BE8412986CD430049F6A7 /* AboutView.swift */; };
+		EAB8DEA929ACBB4000D0406B /* PokemonAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8DEA829ACBB4000D0406B /* PokemonAPITests.swift */; };
 		EADB52DB298675DD00886F35 /* PKMDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB52DA298675DD00886F35 /* PKMDetailView.swift */; };
 		EADB52F12986926100886F35 /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52DE2986925F00886F35 /* Poppins-ExtraBoldItalic.ttf */; };
 		EADB52F22986926100886F35 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EADB52DF2986925F00886F35 /* Poppins-Black.ttf */; };
@@ -65,6 +66,16 @@
 		EADB53062986931900886F35 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB53052986931900886F35 /* FontManager.swift */; };
 		EAF5DD5D2989676D0090754E /* PKMCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF5DD5C2989676D0090754E /* PKMCellViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EAB8DEAA29ACBB4000D0406B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA2B875F298421FD00606B83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA2B8766298421FD00606B83;
+			remoteInfo = PokemonAPI;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EA104C902993A03700BFA509 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
@@ -100,6 +111,8 @@
 		EA8BE83D2986C07C0049F6A7 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		EA8BE83F2986C64F0049F6A7 /* StatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatModel.swift; sourceTree = "<group>"; };
 		EA8BE8412986CD430049F6A7 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		EAB8DEA629ACBB4000D0406B /* PokemonAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAB8DEA829ACBB4000D0406B /* PokemonAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAPITests.swift; sourceTree = "<group>"; };
 		EADB52DA298675DD00886F35 /* PKMDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMDetailView.swift; sourceTree = "<group>"; };
 		EADB52DE2986925F00886F35 /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		EADB52DF2986925F00886F35 /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
@@ -137,6 +150,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EAB8DEA329ACBB4000D0406B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -145,6 +165,7 @@
 			children = (
 				EA2B8790298431AD00606B83 /* .swiftlint.yml */,
 				EA2B8769298421FD00606B83 /* PokemonAPI */,
+				EAB8DEA729ACBB4000D0406B /* PokemonAPITests */,
 				EA2B8768298421FD00606B83 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				EA2B8767298421FD00606B83 /* PokemonAPI.app */,
+				EAB8DEA629ACBB4000D0406B /* PokemonAPITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -271,6 +293,14 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		EAB8DEA729ACBB4000D0406B /* PokemonAPITests */ = {
+			isa = PBXGroup;
+			children = (
+				EAB8DEA829ACBB4000D0406B /* PokemonAPITests.swift */,
+			);
+			path = PokemonAPITests;
+			sourceTree = "<group>";
+		};
 		EADB52D9298675A400886F35 /* PKMDetailPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +379,24 @@
 			productReference = EA2B8767298421FD00606B83 /* PokemonAPI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EAB8DEA529ACBB4000D0406B /* PokemonAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAB8DEAE29ACBB4000D0406B /* Build configuration list for PBXNativeTarget "PokemonAPITests" */;
+			buildPhases = (
+				EAB8DEA229ACBB4000D0406B /* Sources */,
+				EAB8DEA329ACBB4000D0406B /* Frameworks */,
+				EAB8DEA429ACBB4000D0406B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EAB8DEAB29ACBB4000D0406B /* PBXTargetDependency */,
+			);
+			name = PokemonAPITests;
+			productName = PokemonAPITests;
+			productReference = EAB8DEA629ACBB4000D0406B /* PokemonAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -361,6 +409,10 @@
 				TargetAttributes = {
 					EA2B8766298421FD00606B83 = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					EAB8DEA529ACBB4000D0406B = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = EA2B8766298421FD00606B83;
 					};
 				};
 			};
@@ -385,6 +437,7 @@
 			projectRoot = "";
 			targets = (
 				EA2B8766298421FD00606B83 /* PokemonAPI */,
+				EAB8DEA529ACBB4000D0406B /* PokemonAPITests */,
 			);
 		};
 /* End PBXProject section */
@@ -415,6 +468,13 @@
 				EA2B8774298421FE00606B83 /* Assets.xcassets in Resources */,
 				EADB53002986926100886F35 /* Poppins-BlackItalic.ttf in Resources */,
 				EADB52FB2986926100886F35 /* Poppins-ExtraBold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAB8DEA429ACBB4000D0406B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,7 +539,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EAB8DEA229ACBB4000D0406B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAB8DEA929ACBB4000D0406B /* PokemonAPITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EAB8DEAB29ACBB4000D0406B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA2B8766298421FD00606B83 /* PokemonAPI */;
+			targetProxy = EAB8DEAA29ACBB4000D0406B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EA2B8775298421FE00606B83 /* LaunchScreen.storyboard */ = {
@@ -661,6 +737,42 @@
 			};
 			name = Release;
 		};
+		EAB8DEAC29ACBB4000D0406B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LSFC8QX49;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samlo.PokemonAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokemonAPI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PokemonAPI";
+			};
+			name = Debug;
+		};
+		EAB8DEAD29ACBB4000D0406B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LSFC8QX49;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samlo.PokemonAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokemonAPI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PokemonAPI";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -678,6 +790,15 @@
 			buildConfigurations = (
 				EA2B877C298421FE00606B83 /* Debug */,
 				EA2B877D298421FE00606B83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAB8DEAE29ACBB4000D0406B /* Build configuration list for PBXNativeTarget "PokemonAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAB8DEAC29ACBB4000D0406B /* Debug */,
+				EAB8DEAD29ACBB4000D0406B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

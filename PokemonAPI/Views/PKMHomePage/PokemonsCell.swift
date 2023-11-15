@@ -117,4 +117,14 @@ class PokemonsCell: UICollectionViewCell, ReusableView {
         }
     }
     
+    override func prepareForReuse() {
+        pokemonImg.image = nil
+        pokemonName.text?.removeAll()
+        pokemonNumber.text?.removeAll()
+        contentView.layer.borderColor = UIColor.secondaryLabel.cgColor
+        pokemonName.backgroundColor = .secondaryLabel
+        pokemonImg.sd_cancelCurrentImageLoad()
+
+    }
+    
 }

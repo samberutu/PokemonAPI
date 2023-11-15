@@ -35,18 +35,19 @@ class PKMHomeVC: UIViewController {
         super.viewDidLoad()
         setupView()
         setupSkeletonView()
-        viewModel.fetchPKMList(viewController: self) {
-            self.setupData()
-        } failureAction: {
-            self.viewModel.fetchPKMList(viewController: self) {
-                self.setupData()
-            }
-        }
-
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        if viewModel.isNeedToReloadData {
+            viewModel.fetchPKMList(viewController: self) {
+                self.reloadData()
+            } failureAction: {
+                self.viewModel.fetchPKMList(viewController: self) {
+                    self.reloadData()
+                }
+            }
+        }
     }
     
     private func setupView() {
@@ -68,10 +69,29 @@ class PKMHomeVC: UIViewController {
         ])
     }
     
-    func setupData() {
+    func reloadData() {
         pokemonsCollectionView.reloadData()
         pokemonsCollectionView.stopSkeletonAnimation()
         view.hideSkeleton()
+    }
+    
+    func setupData() {
+        let startedIndex = viewModel.result.count - viewModel.itemCount
+        pokemonsCollectionView.performBatchUpdates {
+                var indexPaths: [IndexPath] = []
+                for newIndex in 0..<self.viewModel.itemCount {
+                    let index = startedIndex + newIndex
+                    if index != NSNotFound - 1 {
+                        indexPaths.append(IndexPath(row: index, section: 0))
+                    }
+                }
+                pokemonsCollectionView.insertItems(at: indexPaths)
+        } completion: { isCompleted in
+            if isCompleted {
+                self.viewModel.itemCount = 0
+            }
+        }
+
     }
     
     func setupSkeletonView() {
@@ -133,7 +153,7 @@ extension PKMHomeVC: SkeletonCollectionViewDataSource, UICollectionViewDelegateF
 // MARK: - Segue
 extension PKMHomeVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.openSwiftUIScreen(pkmId: String(indexPath.row + 1), pkmCount: viewModel.itemCount)
+        self.openSwiftUIScreen(pkmId: String(indexPath.row + 1), pkmCount: viewModel.result.count)
     }
     
     func openSwiftUIScreen(pkmId: String, pkmCount: Int) {

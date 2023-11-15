@@ -19,6 +19,7 @@ class PKMHomeViewModel {
     var offsetItem = 30
     var limitItem = 30
     var itemCount = 0
+    var isNeedToReloadData = true
     
     init(networkRepository: DataSourceRepositoryProtocol) {
         self.networkRepository = networkRepository
@@ -31,16 +32,16 @@ class PKMHomeViewModel {
             .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
-                    
                 case .finished:
                     self.isPaginating = false
                     self.offsetItem += 30
+                    self.isNeedToReloadData = false
                 case .failure(let error):
                     self.offsetItem -= 30
                     AlertHelper.displayError(message: error.errorMessage, viewController: viewController, action: failureAction)
                 }
             } receiveValue: { response in
-                self.itemCount = response.count
+                self.itemCount = response.results.count
                 self.result.append(contentsOf: response.results)
                 DispatchQueue.main.async {
                     successAction()
